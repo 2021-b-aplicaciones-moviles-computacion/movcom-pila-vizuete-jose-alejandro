@@ -108,7 +108,7 @@ fun main(){
             acumulado, valorActual ->
             return@fold acumulado - valorActual
         }
-    println(respuestaReduceFold)*/
+    println(respuestaReduceFold)
     
     //ejercicio
     println(ArregloDinamico)
@@ -118,6 +118,19 @@ fun main(){
         .fold(100.00 ,{ acc, i -> acc - i })
         .also { println(it) }
     println("Vida actual ${vidaActual}")
+    */
+    //Ejecucion clase sumar
+    val ejemplo1 = Suma(1,2)
+    val ejemplo2 = Suma(null,3)
+    val ejemplo3 = Suma(4,null)
+    val ejemplo4 = Suma(null,null)
+
+    println("valor1: "+ejemplo1.sumar())
+    println("valor2: "+ejemplo2.sumar())
+    println("valor3: "+ejemplo3.sumar())
+    println("valor1: "+ejemplo4.sumar())
+    println(Suma.historial)
+
 
 }
 fun imprimir(nombre: String): Unit {
@@ -174,11 +187,56 @@ class Suma (
         this.numeroUno
         this.numeroDos
     }
+    //Constructor cuando uno de los valores es nulo
+    constructor(
+       uno: Int?,
+       dos: Int,
+    ) : this(
+        if(uno == null) 0 else uno,
+        dos
+    ){
+        //Codigo segundo constructor
+    }
+    constructor(
+        uno: Int,
+        dos: Int?,
+    ): this(
+        uno,
+        if(dos == null) 0 else dos,
+    )
+    {
+        //BLoque de codigo para tercer constrcutor
+    }
+    //Constructor cuando ambos valores son nulos
+    constructor(
+        uno: Int?,
+        dos: Int?,
+    ): this(
+        if(uno == null) 0 else uno,
+        if(dos == null) 0 else dos,
+    )
+    {
+        //BLoque de codigo para constrcutor
+    }
+
+    //Declaración de métodos y propiedades estáticas
+    companion object {
+        val pi = 3.14;
+        val historial = arrayListOf<Int>()
+        fun agregarHistorial(valorNuevo: Int) {
+            historial.add(valorNuevo)
+        }
+    }
+
+
+    //Funciones
     //public fun sumar(): Int{
      fun sumar(): Int {
          val total: Int = numeroUno + numeroDos
+        agregarHistorial(total)
         return total
      }
+
 }
 
 
