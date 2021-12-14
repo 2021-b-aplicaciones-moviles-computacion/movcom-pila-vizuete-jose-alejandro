@@ -1,9 +1,10 @@
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun main(){
     println("Hola mundo")
     imprimir("Jose")
-    calcularSueldo(100)
+
     /*Uso de variables
     *Tipo nombre = valor;
     * Ej: Int edad = 12;
@@ -35,11 +36,94 @@ fun main(){
 
     /*Funciones*/
     /*void*/
+    calcularSueldo(100.00)
+    calcularSueldo(100.00,20.00)
+    calcularSueldo(100.00,20.00,25.00)
+
+    //Parametros nombrados
+    /*Se puede cambiar el orden de como se quiere enviar los
+    parametros*/
+    calcularSueldo(sueldo = 100.00, bonoEspecial = 12.50, tasa = 5.00)
+    calcularSueldo(sueldo = 100.00, tasa = 5.00)
+    calcularSueldo(tasa = 5.00, sueldo = 250.12)
+    //Arreglos
+    val ArregloEstatico: Array<Int> = arrayOf(1,2,3)
+    val nombreEstatico: Array<String> = arrayOf("Juan", "Diego")
+    //Arreglos dinamicos
+
+    val ArregloDinamico: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+    ArregloDinamico.add(6)
+    ArregloDinamico.add(7)
+    ArregloDinamico.add(8)
+/*
+    println(ArregloDinamico)
+    //Operador
+    // Foreach -> Permite la iteracion del arreglo
+    val respuestaForEach: Unit = ArregloDinamico
+        .forEach { valorActual: Int ->
+            println("valorActual: ${valorActual}")
+        }
+            ArregloDinamico
+        .forEachIndexed { indice: Int, valorActual: Int ->
+            println("Pos: ${indice} valorActual ${valorActual}")
+        }
+    //map
+    val respuestaMap: List<Double> = ArregloDinamico
+        .map { valorActual: Int ->
+            return@map valorActual.toDouble()+10.00
+        }
+    println(respuestaMap)
+    val respuestaMap1: List<Double> = ArregloDinamico.map { it + 10.00 }
+    println(respuestaMap1)
+
+    //FILTER
+    val respuestaFilter: List<Int> = ArregloDinamico
+        .filter { valorActual: Int  ->
+          val resultado: Boolean = valorActual > 5
+            return@filter resultado
+        }
+    println(respuestaFilter)
+    val respuestaFilter1: List<Int> = ArregloDinamico.filter { it <=5 }
+    println(respuestaFilter1)
+    // Operadores condicionales Any & All
+    val respuestaAny: Boolean = ArregloDinamico
+        .any { valorActual: Int ->
+            return@any (valorActual > 5)
+        }
+    val respuestaAll: Boolean = ArregloDinamico
+        .all { valorActual: Int ->
+            return@all (valorActual > 5)
+        }
+    println(respuestaAny)
+    println(respuestaAll)
+    //Operador REDUCE
+    val respuestaReduce: Int = ArregloDinamico
+        .reduce { acumulado: Int, valorActual: Int ->
+            return@reduce (acumulado + valorActual)
+        }
+    println(respuestaReduce)
+    val arreglo = arrayListOf<Int>(2,4,5,6,7,8)
+    val respuestaReduceFold: Int = arreglo
+        .fold(100){
+            acumulado, valorActual ->
+            return@fold acumulado - valorActual
+        }
+    println(respuestaReduceFold)*/
+    
+    //ejercicio
+    println(ArregloDinamico)
+    val vidaActual: Double = ArregloDinamico
+        .map { it * 1.50 }
+        .filter { it > 10 }
+        .fold(100.00 ,{ acc, i -> acc - i })
+        .also { println(it) }
+    println("Vida actual ${vidaActual}")
+
 }
 fun imprimir(nombre: String): Unit {
     println("Nombre: ${nombre}")
 }
-fun calcularSuelo(
+fun calcularSueldo (
     sueldo: Double,
     tasa: Double = 12.00,
     bonoEspecial: Double? = null,
@@ -54,3 +138,48 @@ fun calcularSuelo(
         return sueldo * (100/tasa) + bonoEspecial
     }
 }
+abstract class NumerosJava {
+    //Variables generales
+    protected val numeroUno: Int
+    private val numeroDos: Int
+
+    constructor(
+        uno: Int,
+        dos: Int,
+    ){
+        this.numeroUno = uno
+        this.numeroDos= dos
+        println("Inicializar...")
+
+    }
+}
+abstract class Numeros(
+    //Constructor Primario
+    protected var numeroUno: Int,
+    protected var numeroDos: Int,
+) {
+    init {
+        println("Inicializar...")
+    }
+}
+class Suma (
+    //Constructor Primario
+    uno: Int,
+    dos: Int,
+): Numeros(
+    uno,
+    dos
+) {
+    init{
+        this.numeroUno
+        this.numeroDos
+    }
+    //public fun sumar(): Int{
+     fun sumar(): Int {
+         val total: Int = numeroUno + numeroDos
+        return total
+     }
+}
+
+
+
