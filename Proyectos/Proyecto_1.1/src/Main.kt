@@ -2,10 +2,10 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 fun main(){
-    println("Hola mundo")
+    /*println("Hola mundo")
     imprimir("Jose")
 
-    /*Uso de variables
+    Uso de variables
     *Tipo nombre = valor;
     * Ej: Int edad = 12;
     * Variable mutables e inmutables
@@ -35,7 +35,7 @@ fun main(){
     else ->  condicion...}*/
 
     /*Funciones*/
-    /*void*/
+    /*void
     calcularSueldo(100.00)
     calcularSueldo(100.00,20.00)
     calcularSueldo(100.00,20.00,25.00)
@@ -49,13 +49,13 @@ fun main(){
     //Arreglos
     val ArregloEstatico: Array<Int> = arrayOf(1,2,3)
     val nombreEstatico: Array<String> = arrayOf("Juan", "Diego")
-    //Arreglos dinamicos
+    //Arreglos dinamicos*/
 
-    val ArregloDinamico: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+    val ArregloDinamico: ArrayList<Int> = arrayListOf()
     ArregloDinamico.add(6)
     ArregloDinamico.add(7)
     ArregloDinamico.add(8)
-/*
+
     println(ArregloDinamico)
     //Operador
     // Foreach -> Permite la iteracion del arreglo
@@ -63,6 +63,7 @@ fun main(){
         .forEach { valorActual: Int ->
             println("valorActual: ${valorActual}")
         }
+    /*
             ArregloDinamico
         .forEachIndexed { indice: Int, valorActual: Int ->
             println("Pos: ${indice} valorActual ${valorActual}")
@@ -125,14 +126,14 @@ fun main(){
     val ejemplo3 = Suma(4,null)
     val ejemplo4 = Suma(null,null)
 
-    println("valor1: "+ejemplo1.sumar())
+    /*println("valor1: "+ejemplo1.sumar())
     println("valor2: "+ejemplo2.sumar())
     println("valor3: "+ejemplo3.sumar())
-    println("valor1: "+ejemplo4.sumar())
+    println("valor1: "+ejemplo4.sumar())*/
     println(Suma.historial)
 
 
-}
+}/*
 fun imprimir(nombre: String): Unit {
     println("Nombre: ${nombre}")
 }
@@ -165,14 +166,14 @@ abstract class NumerosJava {
         println("Inicializar...")
 
     }
-}
+}*/
 abstract class Numeros(
     //Constructor Primario
     protected var numeroUno: Int,
     protected var numeroDos: Int,
 ) {
     init {
-        println("Inicializar...")
+       // println("Inicializar...")
     }
 }
 class Suma (
