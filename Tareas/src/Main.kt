@@ -628,6 +628,7 @@ class Libros(
         seleccion = indices[num-1]
         return seleccion
     }
+
     fun eliminarNombre(indice: Int, nombres: ArrayList<String>): ArrayList<String>{
         var cadena: String = nombres[indice]
         nombres.removeAt(indice)
@@ -678,5 +679,4 @@ class Bibliotecas(
         fechas.add(fecha)
         return fechas
     }
-
 }
