@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1_1">
         <activity
+            android:name=".CIntentExplicitParametros"
+            android:exported="false" />
+        <activity
+            android:name=".BListView"
+            android:exported="false" />
+        <activity
+            android:name=".ACicloVida"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
