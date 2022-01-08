@@ -23,15 +23,18 @@ class BListView : AppCompatActivity() {
         val adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            arreglo
+            //arreglo
+            BBaseDatosMemoria.arregloBEntrenador
         )
         ListView.adapter=adaptador
         adaptador.notifyDataSetChanged()
         val botonAñadirListView = findViewById<Button>(R.id.btn_añadir_list_view)
+/*        botonAñadirListView.setOnClickListener{
+            //añadirItem(adaptador,arreglo,1)
+        }*/
         botonAñadirListView.setOnClickListener{
-            añadirItem(adaptador,arreglo,1)
-        }
-       /* ListView.setOnItemLongClickListener { parent, view, position, id ->
+            añadirItem(adaptador,BBaseDatosMemoria.arregloBEntrenador,1)
+        }       /* ListView.setOnItemLongClickListener { parent, view, position, id ->
             Log.i("list-view", "Long-click ${arreglo[position]}")
             return@setOnItemLongClickListener true
         }*/
@@ -102,11 +105,13 @@ class BListView : AppCompatActivity() {
         dialogo.show()
     }
     fun añadirItem(
-        adaptador: ArrayAdapter<Int>,
-        arreglo: ArrayList<Int>,
+        adaptador: ArrayAdapter<BEntrenador>,
+        //arreglo: ArrayList<Int>,
+        arreglo: ArrayList<BEntrenador>,
         valor: Int
     ){
-        arreglo.add(valor)
+        //arreglo.add(valor)
+        arreglo.add(BEntrenador("Daniel", "valornuevo"))
         adaptador.notifyDataSetChanged()
 
     }

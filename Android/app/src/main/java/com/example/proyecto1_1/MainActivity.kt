@@ -4,19 +4,24 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
     //Codigo para la respuesta que se va a recibir del INTENT EXPLICITO
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-    {
-            result -> if(result.resultCode ==Activity.RESULT_OK)
-    {
-        val data: Intent? = result.data
-    }
-    }
+    var resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult())
+            {
+            result ->
+                if(result.resultCode ==Activity.RESULT_OK)
+                 {
+                 val data: Intent? = result.data
+                 Log.i("intent","${data?.getStringExtra("nombremodificado")}")
+                 Log.i("intent", "${data?.getIntExtra("edadmodificada", 0)}")
+                }
+            }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("apellido","Pila")
         intentExplicito.putExtra("edad",24)
         startActivityForResult(intent,CODIGO_RESPUESTA_INTENT_EXPLICITO)
-        resultLauncher.launch(intent)
+        resultLauncher.launch(intentExplicito)
 
        /* registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         {
