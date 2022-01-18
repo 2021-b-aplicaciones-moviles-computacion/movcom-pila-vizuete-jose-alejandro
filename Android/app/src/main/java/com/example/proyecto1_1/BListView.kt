@@ -30,7 +30,7 @@ class BListView : AppCompatActivity() {
         adaptador.notifyDataSetChanged()
         val botonAñadirListView = findViewById<Button>(R.id.btn_añadir_list_view)
 /*        botonAñadirListView.setOnClickListener{
-            //añadirItem(adaptador,arreglo,1)
+            añadirItem(adaptador,arreglo,1)
         }*/
         botonAñadirListView.setOnClickListener{
             añadirItem(adaptador,BBaseDatosMemoria.arregloBEntrenador,1)
@@ -40,7 +40,6 @@ class BListView : AppCompatActivity() {
         }*/
        //Acceder a la opcion de menu - Registrar menu contextual
         registerForContextMenu(ListView)
-
     }
 
     override fun onCreateContextMenu(

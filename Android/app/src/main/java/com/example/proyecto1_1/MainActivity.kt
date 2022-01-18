@@ -56,17 +56,30 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("nombre", "Jose")
         intentExplicito.putExtra("apellido","Pila")
         intentExplicito.putExtra("edad",24)
-        startActivityForResult(intent,CODIGO_RESPUESTA_INTENT_EXPLICITO)
-        resultLauncher.launch(intentExplicito)
+        //startActivityForResult(intent,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+        startActivityForResult(intentExplicito,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+        //resultLauncher.launch(intentExplicito)
 
        /* registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         {
             when(it.resultCode){
-                Activity.RESULT_OK ->
+                Activiy.RESULT_OK ->
                 {
 
                 }
             }
         }*/
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            CODIGO_RESPUESTA_INTENT_EXPLICITO ->{
+                if(resultCode == RESULT_OK){
+                    Log.i("intent-epn","${data?.getStringExtra("nombremodificado")}")
+                }else(resultCode == RESULT_CANCELED)
+                    Log.i("intent-epn","Cancelado")
+            }
+        }
     }
 }

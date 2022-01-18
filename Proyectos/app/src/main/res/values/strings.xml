@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Proyecto_1B</string>
+    <string name="text_principal">Seleccione una de las siguientes bibliotecas: </string>
+    <string name="text_crear">Añadir una nueva biblioteca</string>
+    <string name="text_ejecutar_crear">Crear Nuevo Registro</string>
+    <string name="volver">Volver</string>
+</resources>
