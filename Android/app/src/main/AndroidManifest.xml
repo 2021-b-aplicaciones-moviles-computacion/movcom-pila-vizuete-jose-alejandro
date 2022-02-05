@@ -15,6 +15,7 @@
         <activity
             android:name=".BListView"
             android:exported="true">
+            <!--Clase 12 21-12-2021-->
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>

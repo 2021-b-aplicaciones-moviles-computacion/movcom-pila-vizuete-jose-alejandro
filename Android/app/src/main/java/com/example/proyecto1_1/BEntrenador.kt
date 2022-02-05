@@ -2,11 +2,15 @@ package com.example.proyecto1_1
 
 import android.os.Parcel
 import android.os.Parcelable
-
+/*Clase 11 17-12-2021
+* Creacion de clase para envio de clases por el Intent
+* Generacion de Parcelable para convertirlo en objeto y poder tomar
+* los valores del arreglo*/
 class BEntrenador(
     val nombre: String?,
     val descripcion: String?,
 ): Parcelable {
+    /*Lee los valores del objeto */
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString()

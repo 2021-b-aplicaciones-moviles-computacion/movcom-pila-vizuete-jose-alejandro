@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_Entrenador"
+        android:layout_width="229dp"
+        android:layout_height="408dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="180dp" />
+
+    <TextView
+        android:id="@+id/tv_total_likes"
+        android:layout_width="61dp"
+        android:layout_height="15dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/rv_Entrenador"
+        app:layout_constraintStart_toStartOf="@+id/rv_Entrenador"
+        tools:layout_editor_absoluteY="98dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ class BListView : AppCompatActivity() {
         setContentView(R.layout.activity_blist_view)
         val ListView = findViewById<ListView>(R.id.lv_list_view)
         val arreglo: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+
         val adaptador = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
@@ -32,6 +33,7 @@ class BListView : AppCompatActivity() {
 /*        botonAñadirListView.setOnClickListener{
             añadirItem(adaptador,arreglo,1)
         }*/
+        //Clase 11
         botonAñadirListView.setOnClickListener{
             añadirItem(adaptador,BBaseDatosMemoria.arregloBEntrenador,1)
         }       /* ListView.setOnItemLongClickListener { parent, view, position, id ->
@@ -98,14 +100,13 @@ class BListView : AppCompatActivity() {
             "Cancelar",
             null
         )
-
-        
          val dialogo = builder.create()
         dialogo.show()
     }
     fun añadirItem(
-        adaptador: ArrayAdapter<BEntrenador>,
+        //CLASE 11
         //arreglo: ArrayList<Int>,
+        adaptador: ArrayAdapter<BEntrenador>,
         arreglo: ArrayList<BEntrenador>,
         valor: Int
     ){
