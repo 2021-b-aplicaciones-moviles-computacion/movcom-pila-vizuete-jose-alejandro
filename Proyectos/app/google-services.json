@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063183588017",
+    "project_id": "mov-examen-2b-biblioteca",
+    "storage_bucket": "mov-examen-2b-biblioteca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063183588017:android:71f22f535a93685385a090",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_1b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063183588017-j8ehes2rlcro48m9308lv2dqgs62qdgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqkqGrkwN6z0lMz4cRHKnEn1YZKbAm7vw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063183588017-j8ehes2rlcro48m9308lv2dqgs62qdgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

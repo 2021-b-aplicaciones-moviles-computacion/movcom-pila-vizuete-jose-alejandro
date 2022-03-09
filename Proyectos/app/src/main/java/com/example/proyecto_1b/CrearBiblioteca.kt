@@ -7,39 +7,42 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class CrearBiblioteca: AppCompatActivity() {
-    val arreglo: ArrayList<Biblioteca> = BaseMemoria.arregloBiblioteca
+//    val arreglo: ArrayList<Biblioteca> = BaseMemoria.arregloBiblioteca
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.crear_biblioteca)
         //tomamos los valores
-        val txtNombre = findViewById<EditText>(R.id.txt_nombre_edit_biblioteca)
-        val txtDireccion =findViewById<EditText>(R.id.txt_direccion_edit_biblioteca)
-        val intTelefono = findViewById<EditText>(R.id.txt_numero_edit_biblioteca)
         val boton_Ejecutar_crear = findViewById<Button>(R.id.btn_ejecutar_crear)
         val boton_Regresar = findViewById<Button>(R.id.btn_regresar_main)
         boton_Ejecutar_crear
             .setOnClickListener{
-                val nombre: String = txtNombre.text.toString()
-                val direccion: String = txtDireccion.text.toString()
-                val telefono: Int = Integer.parseInt(intTelefono.text.toString())
-                añadirBiblioteca(arreglo, nombre,direccion,telefono)
+               añadirBiblioteca()
             }
         boton_Regresar
             .setOnClickListener{
                 irActividad(MainActivity::class.java)
             }
     }
-    fun añadirBiblioteca(
-        arreglo: ArrayList<Biblioteca>,
-        nombre:String,
-        direccion:String,
-        numero: Int
-    ){
-        arreglo.add(Biblioteca(nombre,direccion,numero))
-        dialogoCrear()
-        Log.i("nuevo-elemento", BaseMemoria.arregloBiblioteca.toString())
+    fun añadirBiblioteca() {
+        val txtNombre = findViewById<EditText>(R.id.txt_nombre_edit_biblioteca)
+        val txtDireccion = findViewById<EditText>(R.id.txt_direccion_edit_biblioteca)
+        val intTelefono = findViewById<EditText>(R.id.txt_numero_edit_biblioteca)
+        val nuevaBiblioteca = hashMapOf<String, Any>(
+            "nombre" to txtNombre.text.toString(),
+            "direccion" to txtDireccion.text.toString(),
+            "telefono" to intTelefono.text.toString().toInt()
+        )
+        val db = Firebase.firestore
+        val referencia = db.collection("bibliotecas")
+        referencia
+            .add(nuevaBiblioteca)
+            .addOnSuccessListener {
+                dialogoCrear()
+            }
     }
     fun irActividad(clase: Class<*>,){
         val intent = Intent(this, clase)

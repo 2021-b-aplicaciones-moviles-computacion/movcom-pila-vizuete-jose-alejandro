@@ -1,115 +1,122 @@
 package com.example.proyecto_1b
 
-import android.content.DialogInterface
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextMenu
-import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
-import androidx.appcompat.app.AlertDialog
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-  var selec_biblioteca: Int =-1
+/*  var selec_biblioteca: Int =-1
     var CODIGO_RESPUESTA_INTENT_EXPLICITO: Int = 401
     var arreglo: ArrayList<Biblioteca> = BaseMemoria.arregloBiblioteca
-    var arreglo_l: ArrayList<Libro> = BaseMemoria.arregloLibros
-
+    var arreglo_l: ArrayList<Libro> = BaseMemoria.arregloLibroszzz
+*/
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //Mostrar lista de las bibliotecas que se encuentran registrada
-        mostrarLista()
-        añadirMenuLista()
-        //Accionar el boton para crear un nuevo registro para la biblioteca
-        val boton_Crear = findViewById<Button>(R.id.btn_crear_biblioteca)
-        boton_Crear
-            .setOnClickListener{
-                irActividad(CrearBiblioteca::class.java)
-            }
-
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_ventana_login)
+    val botonLogin = findViewById<Button>(R.id.btn_registrarse)
+    botonLogin.setOnClickListener {
+        llamarLoginUsuario()
+        }
     }
     fun irActividad(clase: Class<*>,){
         val intent = Intent(this, clase)
         startActivity(intent)
     }
-    fun mostrarLista(){
-        val Lista = findViewById<ListView>(R.id.list_biblioteca)
-        val adaptador = ArrayAdapter(this,android.R.layout.simple_list_item_1,BaseMemoria.arregloBiblioteca)
-        Lista.adapter = adaptador
-        adaptador.notifyDataSetChanged()
-    }
-    fun añadirMenuLista(){
-        val lista = findViewById<ListView>(R.id.list_biblioteca)
-        val adaptador = ArrayAdapter(this,android.R.layout.simple_list_item_1,BaseMemoria.arregloBiblioteca)
-        lista.adapter = adaptador
-        registerForContextMenu(lista)
-    }
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ){
-        super.onCreateContextMenu(menu, v, menuInfo)
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu_opciones_biblioteca,menu)
-        val info = menuInfo as AdapterView.AdapterContextMenuInfo
-        val id = info.position
-        selec_biblioteca = id
-        Log.i("valor-menu-seleccion","BIBLIOTECA ${id}")
+    fun llamarLoginUsuario(){
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build()
+        )
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setTosAndPrivacyPolicyUrls("https://example.com/terms.html",
+                    "https://example.com/privacy.html"
+                )
+                .build(),200
+
+        )
+        irActividad(VentanaInicio::class.java)
     }
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.mi_crear_libro->{
-                verLibros(selec_biblioteca, CrearLibro::class.java)
-                return true
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            200->{
+                if(resultCode == Activity.RESULT_OK){
+                    val usuario: IdpResponse? = IdpResponse.fromResultIntent(data)
+                    if(usuario!= null){
+                        if(usuario.isNewUser == true) {
+                            registrarUsuarioPrimeraVez(usuario)
+                        }else{
+                            setearUsuarioFirebase()
+                        }
+                    }
+                }
             }
-            R.id.mi_verLibros ->{
-                //Log.i("Saludo","${item.itemId}")
-                verLibros(selec_biblioteca, VerLibro::class.java)
-                return true
-            }
-            R.id.mi_editar ->{
-                //recibirItemSelected(2)
-                verLibros(selec_biblioteca,EditarBiblioteca::class.java)
-                return true
-            }
-            R.id.mi_eliminar-> {
-//                recibirItemSelected(3)
-                dialogoEliminar()
-                return true
-            }
-            else ->super.onContextItemSelected(item)
         }
     }
-    fun verLibros(posicion: Int,clase: Class<*>,){
-        val intent = Intent(this, clase)
-        intent.putExtra("idbiblioteca",selec_biblioteca)
-//        startActivity(intent)
-        startActivityForResult(intent,CODIGO_RESPUESTA_INTENT_EXPLICITO)
+    fun registrarUsuarioPrimeraVez(usuario:IdpResponse){
+        val usuarioLogeado = FirebaseAuth
+            .getInstance()
+            .getCurrentUser()
+        if(usuario.email != null && usuarioLogeado != null){
+            val db = Firebase.firestore
+            val roles = arrayListOf("usuario")
+            val email= usuario.email
+            val uid = usuarioLogeado.uid
+            val nuevoUsuario = hashMapOf<String, Any>(
+                "roles" to roles,
+                "uid" to uid,
+                "email" to email.toString()
+            )
+            db.collection("usuario")
+                .document(email.toString())
+                .set(nuevoUsuario)
+                .addOnSuccessListener {
+                    Log.i("firebase-login","Se creo el usuario")
+                    //setearUsuarioFirebase()
+                }
+                .addOnFailureListener{
+                    Log.i("firebase-login","Fallo la creación de usuario")
+                }
+        }else{
+            Log.i("firebase-login","Error no email ni usuario")
+        }
     }
-    fun eliminarBiblioteca(){
-        arreglo.remove(arreglo[selec_biblioteca])
-        mostrarLista()
-    }
-    fun dialogoEliminar(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Confirmación eliminar")
-        builder.setMessage("Desea eliminar el registro?: ")
-        builder.setPositiveButton("Si",DialogInterface.OnClickListener{dialog, which ->
-            eliminarBiblioteca()
-        })
-        builder.setNegativeButton(
-            "Cancelar",
-            null
-        )
-        val dialogo = builder.create()
-        dialogo.show()
+    fun setearUsuarioFirebase() {
+        val instanciaAuth = FirebaseAuth.getInstance()
+        val usuarioLocal = instanciaAuth.currentUser
+        if(usuarioLocal != null){
+            if (usuarioLocal.email != null) {
+                val db = Firebase.firestore
+                val referencia = db
+                    .collection("usuario")
+                    .document(usuarioLocal.email.toString()) // /usuario/a@...com
+                referencia
+                    .get()
+                    .addOnSuccessListener {
+                        val usuarioCargado: FirestoreUsuarioDto? =
+                            it.toObject(FirestoreUsuarioDto::class.java)
+                        if(usuarioCargado != null){
+                            BAuthUsuario.usuario = usuarioCargado
+                        }
+                        irActividad(VentanaInicio::class.java)
+                        Log.i("firebase-firestore", "Usuario cargado")
+                    }
+                    .addOnFailureListener {
+                        Log.i("firebase-firestore", "Fallo cargar usuario")
+                    }
+            }
+        }
+
     }
 }

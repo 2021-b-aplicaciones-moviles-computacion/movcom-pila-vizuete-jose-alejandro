@@ -10,16 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1_1">
         <activity
+            android:name=".HHttpActivity"
+            android:exported="false" />
+        <activity
             android:name=".CIntentExplicitParametros"
             android:exported="true" />
         <activity
             android:name=".BListView"
             android:exported="true">
-            <!--Clase 12 21-12-2021-->
+
+            <!-- Clase 12 21-12-2021 -->
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
         <activity

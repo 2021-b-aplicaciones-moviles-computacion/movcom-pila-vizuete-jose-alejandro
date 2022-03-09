@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "862832040597",
+    "project_id": "mov-proyecto2b-pilajose",
+    "storage_bucket": "mov-proyecto2b-pilajose.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862832040597:android:f97a1d63572ea5fd8d599c",
+        "android_client_info": {
+          "package_name": "com.example.aplicacion2b_josepila"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862832040597-9h6l0pgnkl5944oid7n784mg69kf08mt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAduHk1gdS0hsX7lnaI9vyraKjEWYfZ6sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862832040597-9h6l0pgnkl5944oid7n784mg69kf08mt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

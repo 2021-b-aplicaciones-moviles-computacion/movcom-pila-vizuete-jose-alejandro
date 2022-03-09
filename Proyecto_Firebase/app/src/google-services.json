@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "529353222488",
+    "project_id": "b-japv-moviles",
+    "storage_bucket": "b-japv-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529353222488:android:199a4244c6f39c1b531d2d",
+        "android_client_info": {
+          "package_name": "com.example.proyectofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529353222488-pppefigq07i7i0t2aeg8ulu1qc5fmvpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMWBvjUCp0fE-QlDGV975PLMQBdFnvc0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529353222488-pppefigq07i7i0t2aeg8ulu1qc5fmvpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

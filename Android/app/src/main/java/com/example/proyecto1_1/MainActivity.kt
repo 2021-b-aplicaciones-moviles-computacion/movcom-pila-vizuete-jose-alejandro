@@ -86,8 +86,12 @@ class MainActivity : AppCompatActivity() {
             .setOnClickListener{
                 irActividadConParametros(GRecyclerView::class.java)
             }
-
-
+        /*Clase 18 - HTTP*/
+        val btn_irHttp = findViewById<Button>(R.id.btn_ir_http)
+        btn_irHttp
+            .setOnClickListener{
+                irActividadConParametros(HHttpActivity::class.java)
+            }
     }
     fun irActividad(clase: Class<*>,) {
         val intent = Intent(this, clase)

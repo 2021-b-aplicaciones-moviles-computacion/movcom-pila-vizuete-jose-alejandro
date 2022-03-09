@@ -11,14 +11,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class CrearLibro: AppCompatActivity() {
-    var arregloLibro: ArrayList<Libro> = BaseMemoria.arregloLibros
-    var selec_biblioteca: Int = -1
+    companion object{
+        var biblioteca = String
+    }
+//    var arregloLibro: ArrayList<Libro> = BaseMemoria.arregloLibros
+    var selec_biblioteca: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.crear_libro)
-        selec_biblioteca = intent.getIntExtra("idbiblioteca", 0)
+        selec_biblioteca = intent.getStringExtra("idbiblioteca").toString()
         val bib = findViewById<TextView>(R.id.txt_biblioteca_registrar)
-        bib.setText("Registro de Libro para la ${BaseMemoria.arregloBiblioteca[selec_biblioteca].nombre}")
+//        bib.setText("Registro de Libro para la ${BaseMemoria.arregloBiblioteca[selec_biblioteca].nombre}")
         val nomb = findViewById<EditText>(R.id.txt_nombre_libro)
         val aut = findViewById<EditText>(R.id.txt_autor_libro)
         val edic = findViewById<EditText>(R.id.txt_edic_libro)
@@ -33,22 +36,22 @@ class CrearLibro: AppCompatActivity() {
         btn_crear.setOnClickListener {
 
             val bool: Boolean = disp.isChecked
-            crearLibro(
+           /* crearLibro(
                 nomb.text.toString(),
                 aut.text.toString(),
                 Integer.parseInt(edic.text.toString()),
                 bool
-            )
+            )*/
         }
         btn_volver.setOnClickListener {
             irActividad(MainActivity::class.java)
         }
     }
 
-    fun crearLibro(nombre: String, autor: String, edicion: Int, disponible: Boolean) {
+/*    fun crearLibro(nombre: String, autor: String, edicion: Int, disponible: Boolean) {
         arregloLibro.add(Libro(selec_biblioteca, nombre, autor, edicion, disponible))
         dialogoCrear()
-    }
+    }*/
 
     fun dialogoCrear() {
         val builder = AlertDialog.Builder(this)

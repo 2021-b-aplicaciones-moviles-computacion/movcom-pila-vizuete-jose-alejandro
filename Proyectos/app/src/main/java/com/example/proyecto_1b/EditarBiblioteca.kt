@@ -13,7 +13,7 @@ import org.w3c.dom.Text
 
 class EditarBiblioteca: AppCompatActivity() {
     var biblioteca: Int = -1
-    var arreglo : ArrayList<Biblioteca> = BaseMemoria.arregloBiblioteca
+//    var arreglo : ArrayList<Biblioteca> = BaseMemoria.arregloBiblioteca
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.editar_biblioteca)
@@ -21,7 +21,7 @@ class EditarBiblioteca: AppCompatActivity() {
         mostrarBiblioteca()
     }
     fun mostrarBiblioteca(){
-        asignarTexto()
+        //asignarTexto()
         val nombre = findViewById<TextView>(R.id.txt_nombre_edit_biblioteca)
         val direccion = findViewById<TextView>(R.id.txt_direccion_edit_biblioteca)
         val numero = findViewById<TextView>(R.id.txt_numero_edit_biblioteca)
@@ -34,7 +34,7 @@ class EditarBiblioteca: AppCompatActivity() {
             irActividad(MainActivity::class.java)
         }
     }
-    fun asignarTexto(){
+/*    fun asignarTexto(){
         val nombre = findViewById<TextView>(R.id.txt_nombre_edit_biblioteca)
         val direccion = findViewById<TextView>(R.id.txt_direccion_edit_biblioteca)
         val numero = findViewById<TextView>(R.id.txt_numero_edit_biblioteca)
@@ -47,7 +47,7 @@ class EditarBiblioteca: AppCompatActivity() {
         arreglo[biblioteca].direccion = direccion
         arreglo[biblioteca].numeroTel = numero
 
-    }
+    }*/
     fun irActividad(clase: Class<*>,){
         val intent = Intent(this, clase)
         startActivity(intent)
@@ -57,7 +57,7 @@ class EditarBiblioteca: AppCompatActivity() {
         builder.setTitle("Confirmación Actualización")
         builder.setMessage("Desea Actualizar la información correspondiente? : ")
         builder.setPositiveButton("Si", DialogInterface.OnClickListener{ dialog, which ->
-            actualizarDatos(nombre,direccion,numero)
+       //     actualizarDatos(nombre,direccion,numero)
             dialogoActualizado()
 
         })

@@ -70,4 +70,14 @@
         app:layout_constraintStart_toStartOf="@+id/btn_intent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_ir_http"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="461dp"
+        android:text="Http"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_recycler_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
